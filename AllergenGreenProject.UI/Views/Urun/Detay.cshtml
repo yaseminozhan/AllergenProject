@@ -1,0 +1,56 @@
+﻿@using AlergenProject.UI.Entities
+@model Urunler
+
+@{
+    ViewData["Title"] = "Ürün Detayı";
+}
+
+<div class="d-flex justify-content-start mb-4">
+    <a asp-controller="Urun" asp-action="Arama" class="btn btn-outline-secondary me-2">
+        🔍 Ürün Aramaya Dön
+    </a>
+
+    <a asp-controller="Urun" asp-action="Listele" class="btn btn-outline-primary">
+        📦 Ürünleri Listele
+    </a>
+</div>
+
+    <div class="card shadow-lg">
+        <div class="card-header bg-success text-white">
+            <h3 class="text-center">Ürün Detayı</h3>
+        </div>
+
+        <div class="card-body">
+            <h4>@Model.UrunAdi</h4>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <p><strong>Ürün Barkodu:</strong> @Model.UrunBarkod</p>
+                    <p><strong>Kategori:</strong> @Model.Kategori?.KategoriAdi</p>
+                    <p><strong>Üretici:</strong> @Model.Uretici?.UreticiAdi</p>
+                    <p><strong>İçerik:</strong> @Model.UrunIcerigi</p>
+                </div>
+
+                <div class="col-md-6 text-center">
+                    @if (Model.UrunOnYuzu != null)
+                    {
+                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.UrunOnYuzu)" class="img-fluid rounded mb-3" alt="Ürün Ön Yüzü" />
+                    }
+                    else
+                    {
+                        <p>Ön Yüz Görseli Yok</p>
+                    }
+
+                    @if (Model.UrunArkaYuzu != null)
+                    {
+                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.UrunArkaYuzu)" class="img-fluid rounded" alt="Ürün Arka Yüzü" />
+                    }
+                    else
+                    {
+                        <p>Arka Yüz Görseli Yok</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

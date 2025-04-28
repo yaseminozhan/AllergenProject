@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AlergenProject.UI</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AlergenProject.UI.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+
+    <!-- arka plan rengi -->
+    <style>
+        body {
+            background-color: #e9fce9;
+        }
+
+        .navbar {
+            box-shadow: none !important;
+            border: none !important;
+            background-color: transparent !important;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-transparent mb-3">
+            <div class="container-fluid">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Home" asp-action="Privacy">Gizlilik</a>
+                        </li>
+                    </ul>
+
+                    <!-- Kullanıcı dropdown -->
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary rounded-circle dropdown-toggle" type="button" id="userDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li><span class="dropdown-item-text fw-bold">👤 @User.Identity.Name</span></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item text-danger" href="/Account/Logout">Çıkış Yap</a></li>
+                            }
+                            else
+                            {
+                                <li><span class="dropdown-item-text">🔓 Misafir Kullanıcı</span></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item text-primary" href="/Account/Login">Giriş Yap</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="alert alert-success text-center rounded-pill shadow-sm fw-bold fs-5 m-3">
+            🌿 Merhaba @User.Identity.Name, Green Love'a hoş geldin!
+        </div>
+    }
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - AlergenProject.UI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

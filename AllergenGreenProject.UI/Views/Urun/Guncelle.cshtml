@@ -1,0 +1,70 @@
+﻿@using AlergenProject.UI.Entities
+@model Urunler
+
+@{
+    ViewData["Title"] = "Ürün Güncelle";
+}
+
+<div class="container mt-5">
+
+    <h2 class="text-warning mb-4">✏️ Ürün Güncelle</h2>
+
+    <form asp-action="Guncelle" method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="UrunId" />
+
+        <div class="mb-3">
+            <label asp-for="UrunBarkod" class="form-label">Ürün Barkodu</label>
+            <input asp-for="UrunBarkod" class="form-control" readonly />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="UrunAdi" class="form-label">Ürün Adı</label>
+            <input asp-for="UrunAdi" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="UrunIcerigi" class="form-label">Ürün İçeriği</label>
+            <textarea asp-for="UrunIcerigi" class="form-control" rows="3"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="KategoriId" class="form-label">Kategori</label>
+            <select asp-for="KategoriId" class="form-control">
+                <option value="">-- Kategori Seçiniz --</option>
+                @foreach (var kategori in ViewBag.Kategoriler)
+                {
+                    <option value="@kategori.KategoriId" selected="@(kategori.KategoriId == Model.KategoriId)">
+                        @kategori.KategoriAdi
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="UreticiId" class="form-label">Üretici</label>
+            <select asp-for="UreticiId" class="form-control">
+                <option value="">-- Üretici Seçiniz --</option>
+                @foreach (var uretici in ViewBag.Ureticiler)
+                {
+                    <option value="@uretici.UreticiId" selected="@(uretici.UreticiId == Model.UreticiId)">
+                        @uretici.UreticiAdi
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Yeni Ön Yüz Fotoğrafı (Değiştirmek istersen)</label>
+            <input type="file" name="UrunOnYuzuFile" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Yeni Arka Yüz Fotoğrafı (Değiştirmek istersen)</label>
+            <input type="file" name="UrunArkaYuzuFile" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-warning mt-3">Güncelle</button>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary mt-3 ms-2">Ana Sayfa'ya Dön</a>
+    </form>
+
+</div>

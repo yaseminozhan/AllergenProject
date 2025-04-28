@@ -1,0 +1,78 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Love Green</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <style>
+        body {
+            margin: 0;
+            background: url('/images/bg-dalga.png') no-repeat center center;
+            background-size: cover;
+            font-family: 'Segoe UI', sans-serif;
+            color: #184c35;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sağ Üstte Kullanıcı İkonu -->
+    <div class="position-absolute top-0 end-0 p-3">
+        <div class="dropdown">
+            <button class="btn btn-outline-success dropdown-toggle" type="button" id="kullaniciMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                👤
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="kullaniciMenu">
+                <li>
+                    <form method="post" asp-area="Identity" asp-page="/Account/Logout">
+                        <button type="submit" class="dropdown-item text-danger">
+                            🚪 Çıkış Yap
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
+
+        <div class="mb-4 text-center">
+            <img src="~/images/logo.png" alt="Green Love Logo" width="200" />
+        </div>
+
+        <div class="d-grid gap-3 w-100 px-4">
+
+            <a class="btn btn-outline-success btn-lg py-3 fs-5 rounded-pill" asp-action="BarkodOkuma" asp-controller="Home">
+                <i class="bi bi-upc-scan me-2 fs-4"></i> Barkod Okuma
+            </a>
+
+            <a class="btn btn-outline-success btn-lg py-3 fs-5 rounded-pill" asp-action="Arama" asp-controller="Urun">
+                <i class="bi bi-search me-2 fs-4"></i> Arama
+            </a>
+
+            <a class="btn btn-outline-success btn-lg py-3 fs-5 rounded-pill" asp-action="UrunEkle" asp-controller="Home">
+                <i class="bi bi-plus-circle me-2 fs-4"></i> Ürün İşlemleri
+            </a>
+
+            <a class="btn btn-outline-success btn-lg py-3 fs-5 rounded-pill" asp-action="Listele" asp-controller="Urun">
+                <i class="bi bi-box me-2 fs-4"></i> Ürünleri Listele
+            </a>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Ürün İşlemleri";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Love Green</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            margin: 0;
+            background: url('/images/bg-dalga.png') no-repeat center center;
+            background-size: cover;
+            font-family: 'Segoe UI', sans-serif;
+            color: #184c35;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
+
+        <h2 class="mb-5 text-success">Ürün İşlemleri</h2>
+
+        <div class="d-grid gap-4 w-75">
+
+            <a asp-controller="Urun" asp-action="YeniEkle" class="btn btn-outline-primary btn-lg py-3 rounded-pill">
+                ➕ Yeni Ürün Ekle
+            </a>
+
+            <a asp-controller="Urun" asp-action="GuncelleBaslat" class="btn btn-outline-warning btn-lg py-3 rounded-pill">
+                ✏️ Ürünü Güncelle
+            </a>
+
+            <a asp-controller="Urun" asp-action="Listele" class="btn btn-outline-danger btn-lg py-3 rounded-pill">
+                ❌ Ürünü Sil
+            </a>
+
+        </div>
+
+        <div class="mt-5">
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">
+                ⬅️ Ana Sayfaya Dön
+            </a>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
